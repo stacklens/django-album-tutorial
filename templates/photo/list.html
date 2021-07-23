@@ -2,7 +2,20 @@
 {% block title %}首页{% endblock title %}
 
 {% block content %}
-    {% for photo in photos %}
-        <img src="{{ photo.image.url }}" alt="">
-    {% endfor %}
+    <div class="container py-2">
+        <div class="row" data-masonry='{"percentPosition": true}'>
+            {% for photo in photos %}
+            <div class="col-4 py-2">
+                <div class="card">
+                    <img 
+                    src="{{ photo.image.url }}" 
+                    alt=""
+                    class="card-img"
+                    >
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock content %}
