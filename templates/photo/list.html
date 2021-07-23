@@ -1,3 +1,8 @@
-{% for photo in photos %}
-  <img src="{{ photo.image.url }}" alt="">
-{% endfor %}
+{% extends "base.html" %}
+{% block title %}首页{% endblock title %}
+
+{% block content %}
+    {% for photo in photos %}
+        <img src="{{ photo.image.url }}" alt="">
+    {% endfor %}
+{% endblock content %}
