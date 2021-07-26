@@ -1,9 +1,70 @@
 <!-- 导航栏 -->
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="container">
         <!-- 标志 -->
-        <a class="navbar-brand" href="/">
-            <h2>Awesome Album</h2>
+        <a 
+            class="navbar-brand" 
+            href="#"
+            data-bs-toggle="modal" 
+            data-bs-target="#login"
+        >
+            <h2>
+                Awesome Album
+            </h2>
         </a>
+        <!-- 登录模态窗 -->
+        {% if user.is_superuser %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <h2>
+                    <a class="nav-link active" aria-current="page" href="#">
+                        +
+                    </a>
+                </h2>
+                </li>
+            </ul>
+        {% endif %}
     </div>
 </nav>
+
+<!-- 登出 -->
+{% if user.is_superuser %}
+<div class="modal fade" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>确认退出账号吗？</p>
+                <form action="{% url 'home' %}" method="post">{% csrf_token %}
+                    <input type="text" id="isLogout" name="isLogout" value="True" hidden>
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 登录 -->
+{% else %}
+<div class="modal fade" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="{% url 'home' %}" method="post">{% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pwd" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="pwd" name="password">
+                        <div id="emailHelp" class="form-text">
+                            We'll never share your password with anyone else.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
