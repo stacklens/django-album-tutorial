@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from photo.models import Photo
 from django.contrib.auth import authenticate, login, logout
 
@@ -18,3 +18,12 @@ def home(request):
         if isLogout == 'True':
             logout(request)
     return render(request, 'photo/list.html', context)
+
+
+def upload(request):
+    if request.method == 'POST' and request.user.is_superuser:
+        images = request.FILES.getlist('images')
+        for i in images:
+            photo = Photo(image=i)
+            photo.save()
+    return redirect('home')

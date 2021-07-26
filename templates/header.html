@@ -17,7 +17,13 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                 <h2>
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a 
+                    class="nav-link active"
+                    aria-current="page"
+                    href="{% url 'photo:upload' %}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#upload"
+                    >
                         +
                     </a>
                 </h2>
@@ -37,6 +43,33 @@
                 <form action="{% url 'home' %}" method="post">{% csrf_token %}
                     <input type="text" id="isLogout" name="isLogout" value="True" hidden>
                     <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="upload">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title">上传图片</h5>
+                <form action="{% url 'photo:upload' %}"
+                method="post"
+                enctype="multipart/form-data"
+                >
+                    {% csrf_token %}
+                    <div class="col py-2">
+                        <input
+                            class="form-control" 
+                            type="file"
+                            id="images" 
+                            name="images" 
+                            multiple="multiple"
+                            accept="image/*"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
                 </form>
             </div>
         </div>
