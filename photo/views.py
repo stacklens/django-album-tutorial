@@ -2,9 +2,19 @@ from django.shortcuts import render, redirect
 from photo.models import Photo
 from django.contrib.auth import authenticate, login, logout
 
+from django.core.paginator import Paginator
+
 def home(request):
     photos = Photo.objects.all()
-    context = {'photos': photos}
+
+    paginator    = Paginator(photos, 5)
+    page_number  = request.GET.get('page')
+    paged_photos = paginator.get_page(page_number)
+
+    context = {'photos': paged_photos}
+
+
+
     # 处理登入登出的POST请求
     if request.method == 'POST':
         username = request.POST.get('username')
