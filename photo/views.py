@@ -11,6 +11,10 @@ import oss2
 # auth   = oss2.Auth('<AccessKey ID>', '<AccessKey Secret>')
 # 填入 OSS 的 <域名> 和 <Bucket名>
 # bucket = oss2.Bucket(auth, '<oss域名>', '<Bucket名>')
+auth   = oss2.Auth('LTAI5t5kTofhenQRNobdMfhK', 'zVEq4Iqqi0WwvszApvbAkEFmXpO6NC')
+bucket = oss2.Bucket(auth, 'oss-cn-beijing.aliyuncs.com', 'dusai-test')
+
+
 
 class ObjIterator(oss2.ObjectIteratorV2):
     # 初始化时立即抓取图片数据
@@ -44,10 +48,10 @@ class ObjIterator(oss2.ObjectIteratorV2):
         return result.is_truncated, result.next_continuation_token
 
 def oss_home(request):
-    raise ValueError("""
-请确保 /photo/views.py 中有关阿里云的信息填写正确。
-(即 auth 和 bucket 属性中的信息)。
-完成后将它们取消注释，并删除此行raise代码。""")
+#     raise ValueError("""
+# 请确保 /photo/views.py 中有关阿里云的信息填写正确。
+# (即 auth 和 bucket 属性中的信息)。
+# 完成后将它们取消注释，并删除此行raise代码。""")
 
     photos       = ObjIterator(bucket)
     paginator    = Paginator(photos, 6)
