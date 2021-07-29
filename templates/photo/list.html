@@ -91,5 +91,16 @@
         padding-left: 10px;
         padding-right: 10px;
     }
+
+    
 </style>
+
+<script type='text/javascript'>
+    $(window).on('load', function() {
+        $('#cards').masonry({
+        // options
+        itemSelector: '.grid-item'
+        });
+    })
+</script>
 {% endblock scripts %}
