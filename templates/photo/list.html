@@ -3,9 +3,9 @@
 
 {% block content %}
     <div class="container py-2">
-        <div class="row" data-masonry='{"percentPosition": true}'>
+        <div class="row" data-masonry='{"percentPosition": true}' id="cards">
             {% for photo in photos %}
-            <div class="col-4 py-2">
+            <div class="col-4 py-2 grid-item">
                 <div class="card hvr-float-shadow">
                     <a 
                     href="#"
@@ -23,8 +23,8 @@
             {% endfor %}
         </div>
 
-        <div class="row justify-content-center py-5" id="cards">
-            <span class="step-links paginator grid-item">
+        <div class="row justify-content-center py-5">
+            <span class="step-links paginator">
                 {% if photos.has_previous %}
                     <a 
                     href="?page=1" 
