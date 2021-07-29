@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}首页{% endblock title %}
+
+{% block content %}
+    <div class="container py-2">
+        <div class="row" id="cards" data-masonry='{"percentPosition": true }'>
+            {% for photo in photos %}
+            <div class="col-4 py-2 grid-item">
+                <div class="card hvr-float-shadow">
+                    <a 
+                    href="#"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#photo-{{ photo.id }}"
+                    >
+                        <img 
+                        src="https://dusai-test.oss-cn-beijing.aliyuncs.com/{{ photo.key }}" 
+                        alt=""
+                        class="card-img"
+                        >
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row justify-content-center py-5">
+            <span class="step-links paginator">
+                {% if photos.has_previous %}
+                    <a 
+                    href="?page=1" 
+                    class="paginator prevnext" >
+                        &laquo;
+                    </a>
+                    <a 
+                    href="?page={{ photos.previous_page_number }}" 
+                    class="paginator prevnext">
+                        {{ photos.previous_page_number }}
+                    </a>
+                {% endif %}
+        
+                    <span class="current">
+                        {{ photos.number }}
+                    </span>
+        
+                {% if photos.has_next %}
+                    <a 
+                    href="?page={{ photos.next_page_number }}" 
+                    class="paginator prevnext">
+                        {{ photos.next_page_number }}
+                    </a>
+                    <a 
+                    href="?page={{ photos.paginator.num_pages }}"
+                    class="paginator prevnext">
+                        &raquo;
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    {% for photo in photos  %}
+    <!-- Modal -->
+    <div class="modal fade" id="photo-{{ photo.id }}">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img 
+                    src="https://dusai-test.oss-cn-beijing.aliyuncs.com/{{ photo.key }}" 
+                    alt=""
+                    class="card-img"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock content %}
+
+{% block scripts %}
+<style>
+    .paginator {
+        color: white;
+        text-align: center;
+        text-decoration: none;
+    }
+    .prevnext {
+        font-size: x-large;
+    }
+    .current {
+        font-size: xx-large;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+
+<script type='text/javascript'>
+    $(window).on('load', function() {
+        $('#cards').masonry({
+        // options
+        itemSelector: '.grid-item'
+        });
+    })
+</script>
+
+{% endblock scripts %}
