@@ -5,7 +5,7 @@
 
 # Django搭建网络相册教程
 
-这是面向新人的**Django搭建网络相册教程**的项目代码。
+这是面向新人的**Django搭建网络相册教程**。
 
 **教程为零基础的小白准备，目的是快速搭建一个相册网站。**
 
@@ -14,6 +14,14 @@
 - [GitHub](/md)
 
 > 文章位于 `/md` 目录中。
+
+## 什么是 Django
+
+**Django** 是一个由 **Python** 写成的开源Web应用框架，你可以用它以更高的效率、更少的代码，轻松搭建一个高性能的网站。
+
+如果你以前从未接触过 web 开发，并且想快速上线自己的个性化网站，Django 是你的绝佳选择。
+
+在本教程中，你会见识到 Django 如何用非常少量、简单易懂的代码，完成功能强大的网站。
 
 ## 教程特点
 
@@ -24,25 +32,69 @@
 ## 适合人群
 
 - 拥有一台能开机的电脑
-- 有一点基础的python编程知识
+- 具有基础的python编程知识
 - 每天能抽出一个小时学习
+
+**后端知识**具有 `Python` 和 `Django` 基础就足够了。
+
+如果本教程你看着非常吃力，那么可以先看看我的 Django 博客入门教程：
+
+- [博客传送门](https://www.dusaiphoto.com/article/2/)
+- [GitHub传送门](https://github.com/stacklens/django_blog_tutorial/tree/master/md)
+
+> 微信公众号也同步更新，搜“杜赛说编程”即可。
+
+**前端知识**具有 `html/css/javascript` 基础即可，教程中不会涉及高深的前端知识。
 
 不要犹豫，现在立刻开始Django的学习吧！
 
 ## 教程快照
 
-**代码片段：**
 ![](/media/repo/readme-1.gif)
 
----
-
-**博客首页片段：**
 ![](/media/repo/readme-2.gif)
 
----
-
-**博客详情页片段：**
 ![](/media/repo/readme-3.gif)
+
+## 知识点
+
+你将在本教程中学到的知识：
+
+- 搭建开发环境
+- Django 代码结构
+- 数据存储
+- MTV 模式
+- 模态与动画
+- 登入与登出
+- 批量上传图片
+- 分页
+- 云存储
+- 部署
+
+共十个章节，都是浓缩的知识点，勤奋的你只需要奋斗十个晚上就足够看完了。
+
+## 资源列表
+
+本教程的代码托管在 GitHub：[Django-album-tutorial](https://github.com/stacklens/django-album-tutorial)
+
+Django 的官方网站：[Django](https://www.djangoproject.com/)
+
+项目开发完毕后使用 Git/GitHub 分布式管理：[Windows环境下使用Git和GitHub](https://www.dusaiphoto.com/article/article-detail/13/)
+
+## 遇到困难时怎么办
+
+- 认真检查代码拼写、缩进是否正确。一个标点符号的错误可能会导致难以发现的问题
+- 较简单的问题直接询问百度；若无法得到满意的答案请尝试 Google 以英文关键字搜索。要坚信全世界这么多学习 Django 的人，你遇到的问题别人早就遇到过了
+- [Django官方网站](https://www.djangoproject.com/)是最权威的学习文档，英语不佳的同学，要有耐心仔细阅读
+- 在本教程下留言，博主会尽量帮忙解决；也可以私信我：dusaiphoto@foxmail.com
+- 实在无法处理的问题，可以暂时跳过。待到技术水平上升台阶，再回头来解决问题
+- 若以上办法均不能解决你的问题，请在[StackOverflow](https://stackoverflow.com/)等技术网站上求助，那里有海量的热心程序员在等着你的问题
+
+## 关于版本
+
+本教程基于 Python 3.8.10、Django 3.2.5 和 Bootstrap 5.0.2。推荐读者采用完全一致的版本，以避免不必要的兼容问题。于 Win 10 系统开发。用 Mac 或 Linux 也 OK。
+
+> 特别要注意的是，教程后期关于对象存储的章节，相关的库目前为止（2021.07.29）仅支持到 Python 3.8 。使用 Python 3.9 可能会有潜在的 bug。
 
 ## 代码使用说明
 
@@ -95,6 +147,10 @@ python manage.py createsuperuser
 ```
 
 即可重新创建管理员账号。
+
+## 开始你的表演
+
+说了这么多，相信你已经迫不及待了。让我们赶紧开始旅程吧！
 
 ## 社区
 
