@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/bootstrap-5.0.2-blue.svg)](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 [![](https://img.shields.io/badge/license-CC_BY_NC_4.0-000000.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-# Django搭建个人博客教程
+# Django搭建网络相册教程
 
 这是面向新人的**Django搭建网络相册教程**的项目代码。
 
@@ -32,21 +32,21 @@
 ## 教程快照
 
 **代码片段：**
-![](http://blog.dusaiphoto.com/github-quickview-3.jpg)
+![](/media/repo/readme-1.gif)
 
 ---
 
 **博客首页片段：**
-![](http://blog.dusaiphoto.com/github-quickview-2.png)
+![](/media/repo/readme-2.gif)
 
 ---
 
 **博客详情页片段：**
-![](http://blog.dusaiphoto.com/github-quickview-1.jpg)
+![](/media/repo/readme-3.gif)
 
 ## 代码使用说明
 
-确认你的电脑已经正确安装 Python 3.4 以上的版本。
+确认你的电脑已经正确安装 Python。
 
 下载项目后，在命令行中进入项目目录，并创建**虚拟环境**：
 
@@ -86,9 +86,7 @@ python manage.py runserver
 
 项目就运行起来了。
 
-数据库文件`db.sqlite3`以及媒体文件夹`media`中的内容是方便读者查看示例效果而存在的。
-
-master版本管理员账号：dusai  密码：adminpassword
+管理员账号：`dusai`  密码：`admin123456`
 
 如果你想清除所有数据及媒体文件，将它们直接删除，并运行：
 
@@ -106,7 +104,7 @@ python manage.py createsuperuser
 
 ## 许可协议
 
-《Django 搭建个人博客教程》（包括且不限于文章、代码、图片等内容）遵守 **署名-非商业性使用 4.0 国际 (CC BY-NC 4.0) 协议**。协议内容如下。
+本教程（包括且不限于文章、代码、图片等内容）遵守 **署名-非商业性使用 4.0 国际 (CC BY-NC 4.0) 协议**。协议内容如下。
 
 **您可以自由地：**
 
