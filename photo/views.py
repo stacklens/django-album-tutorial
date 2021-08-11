@@ -92,3 +92,23 @@ def upload(request):
             photo = Photo(image=i)
             photo.save()
     return redirect('home')
+
+
+
+
+
+from django.http import JsonResponse
+
+# 无限滚动
+def fetch_photos(request):
+    photos       = Photo.objects.values()
+    paginator    = Paginator(photos, 4)
+    page_number  = int(request.GET.get('page'))
+    data         = {}
+
+    # 页码正确才返回数据
+    if page_number <= paginator.num_pages:
+        paged_photos = paginator.get_page(page_number)
+        data.update({'photos': list(paged_photos)})
+
+    return JsonResponse(data)

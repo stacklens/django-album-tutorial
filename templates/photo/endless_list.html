@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}首页{% endblock title %}
+
+{% block content %}
+<div class="container py-2" id="app">
+    <div class="row" id="cards">
+        <div v-for="photo in photos" class="col-6 py-2 grid-item">
+            <div class="card hvr-float-shadow">
+                <a 
+                href="#"
+                data-bs-toggle="modal" 
+                :data-bs-target="'#photo-' + photo.id"
+                >
+                    <img 
+                    v-if="photo !== 0"
+                    :src="'/media/' + photo.image" 
+                    alt=""
+                    class="card-img"
+                    >
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div v-for="photo in photos" class="modal fade" :id="'photo-' + photo.id">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img 
+                    :src="'/media/' + photo.image" 
+                    alt=""
+                    class="card-img"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box"></div>
+
+{% endblock content %}
+
+{% block scripts %}
+<script type='text/javascript'>
+
+    // 休眠函数用于测试
+    let sleep = (time) => {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    // 监听滚动到底部的事件
+    let setBounds = () => {
+        const box = document.querySelector('.box');
+        // 进入底部后将 Vue 的页码状态 +1
+        const onEnter = () => {
+            app._instance.data.pageNum += 1;
+            console.log('onEnter');
+        };
+        // 离开底部事件
+        const onLeave = () => {
+            console.log('onLeave');
+        };
+        const boundary = bound({
+            margins: {bottom: 10}
+        })
+        boundary.watch(box, onEnter, onLeave);
+    }
+
+    // Vue 实例
+    const app = Vue.createApp({
+            el: '#app',
+            // 替换Vue的模板标签
+            // 防止与Django冲突
+            delimiters: ['[[', ']]'],
+            data() {
+                return {
+                    // 图片列表数据
+                    photos: [],
+                    // 当前页码
+                    pageNum: 1,
+                }
+            },
+            // Vue实例创建完毕后，立即获取第一页的数据
+            created() {
+                axios.get('/photo/fetch', {
+                    params: {
+                        page: this.pageNum
+                    }
+                })
+                .then((response) => {
+                    this.photos = response.data.photos;
+                })
+            },
+            watch: {
+                // 监听页码变化的事件
+                // 请求下一页的数据
+                pageNum(newValue, oldValue) {
+                    if (newValue > 1) {
+                        axios.get('/photo/fetch', {
+                            params: {
+                                page: this.pageNum
+                            }
+                        })
+                        .then((response) => {
+                            sleep(500).then(() => {
+                                if (Object.keys(response.data).length !== 0) {
+                                    this.photos = [...this.photos, ...response.data.photos];
+                                }
+                            })
+                        })
+                    }
+                }
+            },
+        });
+
+    // 挂载 Vue 实例
+    app.mount('#app');
+
+    // 页面初始化完毕后，开始监听滚动事件
+    $(window).on('load', function() {
+        setBounds();
+    })
+
+</script>
+{% endblock scripts %}
